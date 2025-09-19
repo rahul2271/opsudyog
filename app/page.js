@@ -6,6 +6,11 @@ import IndustriesServed from "./components/industriesServed";
 import Services from "./components/services";
 import Partners from "./components/clients";
 import Contact from "./components/contact";
+// import QuoteSection from "./components/quote";
+import WhyChooseSection from "./components/usp";
+
+
+
 
 async function getHomepage() {
   const res = await fetch(
@@ -34,6 +39,8 @@ export default function HomePage() {
       <Services/>
       <Partners/>
       <Contact/>
+      {/* <QuoteSection/> */}
+      <WhyChooseSection/>
     </main>
   );
 }

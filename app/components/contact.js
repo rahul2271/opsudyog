@@ -93,6 +93,12 @@ export default function Contact() {
               />
             </div>
             <div>
+              <label className="block text-sm font-medium">Industry / Requirement</label>
+              <input type="text" name="Industry" required
+                className="w-full mt-1 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white/70 dark:bg-gray-900/70 text-[var(--foreground)] focus:ring-2 focus:ring-[var(--primary)] outline-none"
+              />
+            </div>
+            <div>
               <label className="block text-sm font-medium">Message</label>
               <textarea name="message" rows="4" required
                 className="w-full mt-1 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white/70 dark:bg-gray-900/70 text-[var(--foreground)] focus:ring-2 focus:ring-[var(--primary)] outline-none"
