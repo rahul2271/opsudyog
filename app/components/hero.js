@@ -47,7 +47,7 @@ export default function Herosection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl md:text-6xl font-bold text-white drop-shadow-lg"
+          className="text-4xl md:text-7xl font-bold text-white drop-shadow-lg"
         >
           Engineering Tomorrow’s Machinery, Today
         </motion.h1>
