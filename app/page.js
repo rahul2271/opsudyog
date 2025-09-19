@@ -1,6 +1,7 @@
 // app/page.js
 import AboutSection from "./components/aboutSection";
 import Herosection from "./components/hero";
+import ProductsSection from "./components/productSection";
 async function getHomepage() {
   const res = await fetch(
     "https://darkcyan-gnu-869252.hostingersite.com/wp-json/wp/v2/pages?slug=homepage",
@@ -23,6 +24,7 @@ export default function HomePage() {
     <main className="">
       <Herosection/>
       <AboutSection/>
+      <ProductsSection/>
     </main>
   );
 }
