@@ -127,9 +127,18 @@ export default function Footer() {
 
       {/* Divider & Credits */}
       <div className="border-t border-[var(--accent)] mt-12 pt-6 text-center text-[var(--accent)] text-sm relative z-10">
-        © {new Date().getFullYear()} OPS Udyog.<br />
-        Developed with ⚙️ by <span className="text-[var(--primary)] font-semibold">RC Tech Solutions</span>
-      </div>
+  © {new Date().getFullYear()} OPS Udyog.<br />
+  Developed with ⚙️ by{" "}
+  <a
+    href="https://www.rctechsolutions.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-[var(--primary)] font-semibold"
+  >
+    RC Tech Solutions
+  </a>
+</div>
+
     </footer>
   );
 }
