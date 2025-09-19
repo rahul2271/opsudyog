@@ -1,4 +1,5 @@
 // app/page.js
+import AboutSection from "./components/aboutSection";
 import Herosection from "./components/hero";
 async function getHomepage() {
   const res = await fetch(
@@ -21,6 +22,7 @@ export default function HomePage() {
   return (
     <main className="">
       <Herosection/>
+      <AboutSection/>
     </main>
   );
 }
