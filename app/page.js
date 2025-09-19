@@ -3,6 +3,10 @@ import AboutSection from "./components/aboutSection";
 import Herosection from "./components/hero";
 import ProductsSection from "./components/productSection";
 import IndustriesServed from "./components/industriesServed";
+import Services from "./components/services";
+import Partners from "./components/clients";
+import Contact from "./components/contact";
+
 async function getHomepage() {
   const res = await fetch(
     "https://darkcyan-gnu-869252.hostingersite.com/wp-json/wp/v2/pages?slug=homepage",
@@ -27,6 +31,9 @@ export default function HomePage() {
       <AboutSection/>
       <ProductsSection/>
       <IndustriesServed/>
+      <Services/>
+      <Partners/>
+      <Contact/>
     </main>
   );
 }
