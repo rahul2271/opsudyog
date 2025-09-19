@@ -1,7 +1,7 @@
 import { Poppins, Lato } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header";
-
+import Footer from "./components/footer";
 // Poppins for headings
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,6 +27,7 @@ export default function RootLayout({ children }) {
       <body className={`${poppins.variable} ${lato.variable} antialiased`}>
         <Header />   {/* ✅ Fixed */}
         {children}
+        <Footer/>
       </body>
     </html>
   );
