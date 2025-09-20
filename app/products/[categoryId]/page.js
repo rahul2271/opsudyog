@@ -30,8 +30,8 @@ export default function CategoryPage({ params }) {
             <p dangerouslySetInnerHTML={{ __html: prod.price_html }} />
 
             {/* ✅ Open WordPress product page directly in SAME tab */}
-            <a
-  href={`/products/${prod.slug}`}  // ✅ use slug instead of id
+          <a
+  href={`/products/${prod.slug}`}   // stay on your domain
   className="mt-2 inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded font-semibold"
 >
   View Product
