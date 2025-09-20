@@ -1,10 +1,8 @@
 "use client";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CategoryPage({ params }) {
-  // ✅ unwrap params with React.use()
-  const { categoryId } = use(params);
-
+  const { categoryId } = params;
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -31,9 +29,9 @@ export default function CategoryPage({ params }) {
             <h3 className="font-semibold text-lg">{prod.name}</h3>
             <p dangerouslySetInnerHTML={{ __html: prod.price_html }} />
 
-            {/* WordPress product page (open same tab, no Next.js interference) */}
+            {/* ✅ Open WordPress product page directly in SAME tab */}
             <a
-              href={prod.permalink}
+              href={prod.permalink} // WordPress product URL
               className="mt-2 inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded font-semibold"
             >
               View Product
