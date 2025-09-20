@@ -58,7 +58,7 @@ export default function ProductsSection() {
             variants={fadeInUp}
             className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white"
           >
-            Our <span className="text-orange-600">Products</span>
+            Our <span className="text-primary">Products</span>
           </motion.h2>
 
           <motion.p
@@ -110,7 +110,7 @@ export default function ProductsSection() {
                   >
                     <Link
                       href={`/products/${cat.slug}`}
-                      className="inline-block mt-4 px-6 py-2.5 rounded-full bg-orange-600 text-white text-sm font-medium shadow hover:bg-orange-700 transition"
+                      className="inline-block mt-4 px-6 py-2.5 rounded-full bg-primary text-white text-sm font-medium shadow hover:bg-primary transition"
                     >
                       Explore
                     </Link>

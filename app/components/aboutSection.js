@@ -74,7 +74,7 @@ export default function AboutSection() {
             variants={fadeInUp}
             className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight"
           >
-            About <span className="text-orange-600">O.P.S Udyog</span>
+            About <span className="text-primary">O.P.S Udyog</span>
           </motion.h2>
 
           <motion.p
@@ -96,7 +96,7 @@ export default function AboutSection() {
               transition={{ type: "spring", stiffness: 150, damping: 12 }}
               className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-xl transition"
             >
-              <h3 className="text-xl font-semibold text-orange-600">Our Mission</h3>
+              <h3 className="text-xl font-semibold text-primary">Our Mission</h3>
               <p className="mt-3 text-gray-600 dark:text-gray-300 text-sm">
                 To innovate and provide world-class machinery that powers industries 
                 and strengthens economies.
@@ -108,7 +108,7 @@ export default function AboutSection() {
               transition={{ type: "spring", stiffness: 150, damping: 12 }}
               className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-xl transition"
             >
-              <h3 className="text-xl font-semibold text-orange-600">Our Vision</h3>
+              <h3 className="text-xl font-semibold text-primary">Our Vision</h3>
               <p className="mt-3 text-gray-600 dark:text-gray-300 text-sm">
                 To be a global leader in industrial solutions while maintaining 
                 sustainable and ethical practices.

@@ -14,6 +14,7 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
+  Area,
 } from "recharts";
 
 export default function WhyChooseSection() {
@@ -23,7 +24,8 @@ export default function WhyChooseSection() {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) setIsDark(true);
     const listener = (e) => setIsDark(e.matches);
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", listener);
-    return () => window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", listener);
+    return () =>
+      window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", listener);
   }, []);
 
   const uspData = [
@@ -43,9 +45,17 @@ export default function WhyChooseSection() {
     { name: "Heavy Equipment Industry", value: 5 },
   ];
 
-  const COLORS_LIGHT = ["#FF6B00", "#FF9F1C", "#FFD166", "#06D6A0", "#118AB2", "#073B4C", "#EF476F", "#8338EC"];
-  const COLORS_DARK = COLORS_LIGHT;
-  const COLORS = isDark ? COLORS_DARK : COLORS_LIGHT;
+  // Define gradients for pie slices
+  const PIE_GRADIENTS = [
+    ["#FF6B00", "#FF9F1C"],
+    ["#FFD166", "#FCA311"],
+    ["#06D6A0", "#00B894"],
+    ["#118AB2", "#0A84FF"],
+    ["#073B4C", "#1B262C"],
+    ["#EF476F", "#D62839"],
+    ["#8338EC", "#5F0F40"],
+    ["#FF006E", "#FB5607"],
+  ];
 
   const lineData = [
     { year: "1950", growth: 5 },
@@ -115,7 +125,8 @@ export default function WhyChooseSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-sm sm:text-base md:text-lg max-w-3xl mx-auto text-accent"
         >
-          Established in 1950, OPS Udyog has been a global leader in precision machinery, serving multiple industries with innovation, durability, and unmatched reliability.
+          Established in 1950, OPS Udyog has been a global leader in precision machinery, serving
+          multiple industries with innovation, durability, and unmatched reliability.
         </motion.p>
       </div>
 
@@ -141,9 +152,19 @@ export default function WhyChooseSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-20 relative z-10">
         {/* Pie Chart */}
         <div className="relative backdrop-blur-lg border border-accent/20 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg bg-white/30 dark:bg-gray-800/70 transition-all duration-500">
-          <h3 className="text-lg sm:text-xl font-bold mb-4 text-center text-foreground">Industries Served</h3>
+          <h3 className="text-lg sm:text-xl font-bold mb-4 text-center text-foreground">
+            Industries Served
+          </h3>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
+              <defs>
+                {PIE_GRADIENTS.map(([from, to], idx) => (
+                  <linearGradient key={idx} id={`pieGradient-${idx}`} x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor={from} />
+                    <stop offset="100%" stopColor={to} />
+                  </linearGradient>
+                ))}
+              </defs>
               <Pie
                 data={pieData}
                 dataKey="value"
@@ -155,11 +176,15 @@ export default function WhyChooseSection() {
                 label={renderCustomizedLabel}
               >
                 {pieData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  <Cell key={`cell-${index}`} fill={`url(#pieGradient-${index})`} />
                 ))}
               </Pie>
               <Tooltip
-                contentStyle={{ backgroundColor: "var(--secondary)", borderRadius: 6, color: "var(--foreground)" }}
+                contentStyle={{
+                  backgroundColor: "var(--secondary)",
+                  borderRadius: 6,
+                  color: "var(--foreground)",
+                }}
                 formatter={(value, name) => [`${value}%`, name]}
               />
             </PieChart>
@@ -168,26 +193,50 @@ export default function WhyChooseSection() {
 
         {/* Line Chart */}
         <div className="relative backdrop-blur-lg border border-accent/20 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg bg-white/30 dark:bg-gray-800/70 transition-all duration-500">
-          <h3 className="text-lg sm:text-xl font-bold mb-4 text-center text-foreground">Company Growth</h3>
+          <h3 className="text-lg sm:text-xl font-bold mb-4 text-center text-foreground">
+            Company Growth
+          </h3>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={lineData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={isDark ? "#4B5563" : "#E5E7EB"} />
-              <XAxis dataKey="year" tick={{ fill: "var(--accent)", fontSize: 12 }} />
-              <YAxis tick={{ fill: "var(--accent)", fontSize: 12 }} />
-              <Tooltip contentStyle={{ backgroundColor: "var(--secondary)", borderRadius: 6, color: "var(--foreground)" }} />
-              <Line
-                type="monotone"
-                dataKey="growth"
-                stroke="url(#lineGradient)"
-                strokeWidth={3}
-                dot={{ r: 4, stroke: "var(--primary)", strokeWidth: 2, fill: "var(--background)" }}
-              />
               <defs>
                 <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
                   <stop offset="0%" stopColor="var(--primary)" />
                   <stop offset="100%" stopColor="var(--secondary)" />
                 </linearGradient>
+                <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="var(--primary)" stopOpacity={0.4} />
+                  <stop offset="100%" stopColor="var(--secondary)" stopOpacity={0} />
+                </linearGradient>
               </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke={isDark ? "#4B5563" : "#E5E7EB"} />
+              <XAxis dataKey="year" tick={{ fill: "var(--accent)", fontSize: 12 }} />
+              <YAxis tick={{ fill: "var(--accent)", fontSize: 12 }} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "var(--secondary)",
+                  borderRadius: 6,
+                  color: "var(--foreground)",
+                }}
+                formatter={(value, name, props) => [`${value}% Growth`, `Year: ${props.payload.year}`]}
+              />
+              <Area
+                type="monotone"
+                dataKey="growth"
+                stroke="none"
+                fill="url(#areaGradient)"
+              />
+              <Line
+                type="monotone"
+                dataKey="growth"
+                stroke="url(#lineGradient)"
+                strokeWidth={3}
+                dot={{
+                  r: 4,
+                  stroke: "var(--primary)",
+                  strokeWidth: 2,
+                  fill: "var(--background)",
+                }}
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -204,8 +253,12 @@ export default function WhyChooseSection() {
             transition={{ duration: 0.5, delay: idx * 0.15 }}
             className="backdrop-blur-lg border border-accent/20 p-6 sm:p-8 md:p-10 rounded-2xl shadow-lg flex flex-col items-center bg-white/30 dark:bg-gray-800/70 transition-all duration-500"
           >
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground">{value}+</h3>
-            <p className="text-sm sm:text-lg font-medium text-accent mt-1">{key.charAt(0).toUpperCase() + key.slice(1)}</p>
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground">
+              {value}+
+            </h3>
+            <p className="text-sm sm:text-lg font-medium text-accent mt-1">
+              {key.charAt(0).toUpperCase() + key.slice(1)}
+            </p>
           </motion.div>
         ))}
       </div>

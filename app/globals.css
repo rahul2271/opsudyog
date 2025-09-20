@@ -4,7 +4,7 @@
   /* Industrial color scheme */
   --background: #f9f9f9; /* Light background */
   /* --foreground: #1e293b;  */
-  --primary: #ff6b00;    /* Bright industrial orange */
+  --primary: #f54a00;    /* Bright industrial orange */
   /* --secondary: #0a3d62;  Deep navy blue */
   --secondary: #000000;  /* Deep navy blue */
 
@@ -32,7 +32,7 @@
   :root {
     --background: #0f172a; /* Dark navy background */
     --foreground: #f8fafc; /* Light text */
-    --primary: #ff6b00;    /* Keep orange for vibrancy */
+    --primary: #f54a00;    /* Keep orange for vibrancy */
      --secondary: #1e293b;  /*Steel gray for contrast */
     --accent: #94a3b8;     /* Softer accent in dark mode */
   }
