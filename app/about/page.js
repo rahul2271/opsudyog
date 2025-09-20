@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import OurStory from "../components/ourStoryAbout";
 import Team from "../components/teamAbout";
-
-
+import Sustainability from "../components/sustainabilityAbout";
+import Contact from "../components/contact";
 
 
 
@@ -63,25 +63,36 @@ export default function AboutHero() {
         >
           {/* Main Button */}
           <Link
-            href="/products"
-            className="relative px-10 py-4 rounded-full bg-orange-600 text-white font-bold text-lg overflow-hidden group shadow-lg shadow-orange-900/40"
-          >
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-            Explore Products
-          </Link>
+  href="#contact"
+  onClick={(e) => {
+    e.preventDefault();
+    const target = document.getElementById("contact");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  }}
+  className="relative px-10 py-4 rounded-full bg-orange-600 text-white font-bold text-lg overflow-hidden group shadow-lg shadow-orange-900/40"
+>
+  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+  Contact Us
+</Link>
+
 
           {/* Secondary Button */}
-          <Link
+          {/* <Link
             href="/contact"
             className="px-10 py-4 rounded-full border-2 border-gray-400 text-gray-200 font-bold text-lg hover:bg-gray-800 transition-all duration-300"
           >
             Contact Us
-          </Link>
+          </Link> */}
         </motion.div>
       </div>
     </section>
     <OurStory/>
     <Team/>
+    <Sustainability/>
+    <div id="contact"><Contact/></div>
+    
     </>
   );
 }

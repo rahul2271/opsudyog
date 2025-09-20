@@ -23,9 +23,9 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-md ${
         scrolled
-          ? "backdrop-blur-md bg-[var(--background)]/90 shadow-xl"
+          ? "bg-[var(--background)]/90 shadow-lg"
           : "bg-transparent"
       }`}
     >
@@ -33,13 +33,13 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <Image
-            src="/inverted.png"
-            alt="OPS Udyog"
-            width={200}
-            height={50}
-            className="transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-105
-              filter dark:invert-0 invert"
-          />
+  src="/opslogo1.png"
+  alt="OPS Udyog"
+  width={150}
+  height={50}
+  className="transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-105
+             filter dark:invert-0 invert"
+/>
         </Link>
 
         {/* Desktop Navigation */}
@@ -137,110 +137,108 @@ export default function Header() {
       </div>
 
       {/* Mobile Fullscreen Menu */}
-      {/* Mobile Fullscreen Menu */}
-<AnimatePresence>
-  {mobileOpen && (
-    <motion.div
-      initial={{ x: "-100%", opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: "-100%", opacity: 0 }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
-      className="fixed inset-0 z-50 bg-[var(--secondary)]/95 backdrop-blur-md flex flex-col p-8"
-    >
-      {/* Top Row: Logo + Close */}
-      <div className="flex justify-between items-center mb-12">
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/inverted.png"
-            alt="OPS Udyog"
-            width={150}
-            height={40}
-            className="filter dark:invert-0 invert transition-all duration-500"
-          />
-        </Link>
-        <button
-          className="text-[var(--primary)] text-3xl p-2 rounded-full hover:bg-[var(--primary)]/20 transition"
-          onClick={() => setMobileOpen(false)}
-        >
-          &times;
-        </button>
-      </div>
-
-      {/* Main Links */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: {},
-          visible: { transition: { staggerChildren: 0.12 } },
-        }}
-        className="flex flex-col gap-8 text-2xl font-semibold"
-      >
-        {mainLinks.map((item) => (
-          <motion.a
-            key={item}
-            href="#"
-            className="hover:text-[var(--primary)] transition-all duration-300 relative group"
-            whileHover={{ x: 10, textShadow: "0 0 12px var(--primary)" }}
-            onClick={() => setMobileOpen(false)}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ x: "-100%", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: "-100%", opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="fixed inset-0 z-50 bg-[var(--secondary)]/95 backdrop-blur-md flex flex-col p-8"
           >
-            {item}
-            <span className="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] transition-all duration-500 group-hover:w-full"></span>
-          </motion.a>
-        ))}
-      </motion.div>
+            {/* Top Row: Logo + Close */}
+            <div className="flex justify-between items-center mb-12">
+              <Link href="/" className="flex items-center gap-2">
+                <Image
+                  src="/inverted.png"
+                  alt="OPS Udyog"
+                  width={150}
+                  height={40}
+                  className="filter dark:invert-0 invert transition-all duration-500"
+                />
+              </Link>
+              <button
+                className="text-[var(--primary)] text-3xl p-2 rounded-full hover:bg-[var(--primary)]/20 transition"
+                onClick={() => setMobileOpen(false)}
+              >
+                &times;
+              </button>
+            </div>
 
-      {/* Categories Toggle */}
-      <div className="mt-12">
-        <button
-          className="flex items-center justify-between w-full text-xl font-semibold mb-4 hover:text-[var(--primary)] transition duration-300"
-          onClick={() => setMobileCategoryOpen(!mobileCategoryOpen)}
-        >
-          Categories
-          <ChevronDownIcon
-            className={`w-6 h-6 transition-transform ${
-              mobileCategoryOpen ? "rotate-180" : "rotate-0"
-            }`}
-          />
-        </button>
-        <AnimatePresence>
-          {mobileCategoryOpen && (
-            <motion.ul
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="flex flex-col gap-4 pl-4"
+            {/* Main Links */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.12 } },
+              }}
+              className="flex flex-col gap-8 text-2xl font-semibold"
             >
-              {categories.map((cat) => (
-                <li key={cat}>
-                  <a
-                    href="#"
-                    className="hover:text-[var(--primary)] transition duration-300"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {cat}
-                  </a>
-                </li>
+              {mainLinks.map((item) => (
+                <motion.a
+                  key={item}
+                  href="#"
+                  className="hover:text-[var(--primary)] transition-all duration-300 relative group"
+                  whileHover={{ x: 10, textShadow: "0 0 12px var(--primary)" }}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {item}
+                  <span className="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] transition-all duration-500 group-hover:w-full"></span>
+                </motion.a>
               ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
-      </div>
+            </motion.div>
 
-      {/* Optional: subtle background gears for premium feel */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <Image
-          src="/subtle-gears.png"
-          alt="decorative gears"
-          fill
-          className="opacity-10 object-cover"
-        />
-      </div>
-    </motion.div>
-  )}
-</AnimatePresence>
+            {/* Categories Toggle */}
+            <div className="mt-12">
+              <button
+                className="flex items-center justify-between w-full text-xl font-semibold mb-4 hover:text-[var(--primary)] transition duration-300"
+                onClick={() => setMobileCategoryOpen(!mobileCategoryOpen)}
+              >
+                Categories
+                <ChevronDownIcon
+                  className={`w-6 h-6 transition-transform ${
+                    mobileCategoryOpen ? "rotate-180" : "rotate-0"
+                  }`}
+                />
+              </button>
+              <AnimatePresence>
+                {mobileCategoryOpen && (
+                  <motion.ul
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="flex flex-col gap-4 pl-4"
+                  >
+                    {categories.map((cat) => (
+                      <li key={cat}>
+                        <a
+                          href="#"
+                          className="hover:text-[var(--primary)] transition duration-300"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {cat}
+                        </a>
+                      </li>
+                    ))}
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            </div>
 
+            {/* Subtle animated background gears */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <Image
+                src="/subtle-gears.png"
+                alt="decorative gears"
+                fill
+                className="opacity-10 object-cover animate-spin-slow"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

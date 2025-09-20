@@ -25,7 +25,7 @@ const team = [
 
 export default function Team() {
   return (
-    <section className="relative py-20 overflow-hidden bg-[var(--background)] text-[var(--foreground)]">
+    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-[#050b16] dark:via-[#0b1220] dark:to-[#050b16]">
       {/* Animated background shimmer */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-[#050b16] dark:via-[#0b1220] dark:to-[#050b16] animate-pulse pointer-events-none" />
 
