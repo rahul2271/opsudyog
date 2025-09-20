@@ -12,7 +12,10 @@ export default function Header() {
   const [mobileCategoryOpen, setMobileCategoryOpen] = useState(false);
   const [textColor, setTextColor] = useState("text-[var(--primary)]");
 
-  // Detect light section for text color
+  const mainLinks = ["Home", "About", "Services", "Contact"];
+  const categories = ["Machinery", "Spare Parts", "Services"];
+
+  // Intersection Observer to change text color on light section
   useEffect(() => {
     const lightSection = document.getElementById("light-section");
     if (!lightSection) return;
@@ -27,9 +30,6 @@ export default function Header() {
     observer.observe(lightSection);
     return () => observer.disconnect();
   }, []);
-
-  const mainLinks = ["Home", "About", "Services", "Contact"];
-  const categories = ["Machinery", "Spare Parts", "Services"];
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-md bg-transparent">
@@ -59,38 +59,43 @@ export default function Header() {
           ))}
 
           {/* Categories Dropdown */}
-          <Menu as="div" className="relative inline-block text-left">
-            <Menu.Button
-              className={`inline-flex items-center gap-1 transition duration-300 ${textColor} hover:text-[var(--primary)]`}
-              onMouseEnter={() => setCategoryOpen(true)}
-              onMouseLeave={() => setCategoryOpen(false)}
-            >
-              Categories
-              <ChevronDownIcon className={`w-5 h-5 transition-transform ${categoryOpen ? "rotate-180" : "rotate-0"}`} />
-            </Menu.Button>
+          <div
+            className="relative"
+            onMouseEnter={() => setCategoryOpen(true)}
+            onMouseLeave={() => setCategoryOpen(false)}
+          >
+            <Menu as="div" className="relative inline-block text-left">
+              <Menu.Button
+                className={`inline-flex items-center gap-1 transition duration-300 ${textColor} hover:text-[var(--primary)]`}
+              >
+                Categories
+                <ChevronDownIcon
+                  className={`w-5 h-5 transition-transform ${categoryOpen ? "rotate-180" : "rotate-0"}`}
+                />
+              </Menu.Button>
 
-            <Menu.Items
-              static
-              className={`absolute right-0 mt-3 w-56 origin-top-right bg-[var(--secondary)]/95 backdrop-blur-xl rounded-lg shadow-xl ring-1 ring-black/10 transform transition-all duration-300 ease-out ${
-                categoryOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
-              }`}
-            >
-              {categories.map((cat) => (
-                <Menu.Item key={cat}>
-                  {({ active }) => (
-                    <a
-                      href="#"
-                      className={`block px-5 py-2 text-sm rounded-md transition-all ${
-                        active ? "bg-[var(--primary)] text-white scale-105" : "text-white"
-                      }`}
-                    >
-                      {cat}
-                    </a>
-                  )}
-                </Menu.Item>
-              ))}
-            </Menu.Items>
-          </Menu>
+              <Menu.Items
+                className={`absolute right-0 mt-3 w-56 origin-top-right bg-[var(--secondary)]/95 backdrop-blur-xl rounded-lg shadow-xl ring-1 ring-black/10 transform transition-all duration-300 ease-out ${
+                  categoryOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+                }`}
+              >
+                {categories.map((cat) => (
+                  <Menu.Item key={cat}>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={`block px-5 py-2 text-sm rounded-md transition-all ${
+                          active ? "bg-[var(--primary)] text-white scale-105" : "text-white"
+                        }`}
+                      >
+                        {cat}
+                      </a>
+                    )}
+                  </Menu.Item>
+                ))}
+              </Menu.Items>
+            </Menu>
+          </div>
         </nav>
 
         {/* Mobile Menu Button */}
