@@ -10,10 +10,13 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [mobileCategoryOpen, setMobileCategoryOpen] = useState(false);
-  const [textColor, setTextColor] = useState("text-[var(--primary)]"); // orange initially
+  const [textColor, setTextColor] = useState("text-[var(--primary)]");
 
+  // Detect light section for text color
   useEffect(() => {
-    const lightSection = document.getElementById("light-section"); // first light section
+    const lightSection = document.getElementById("light-section");
+    if (!lightSection) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setTextColor(entry.isIntersecting ? "text-[var(--foreground)]" : "text-[var(--primary)]");
@@ -21,11 +24,8 @@ export default function Header() {
       { threshold: 0.1 }
     );
 
-    if (lightSection) observer.observe(lightSection);
-
-    return () => {
-      if (lightSection) observer.unobserve(lightSection);
-    };
+    observer.observe(lightSection);
+    return () => observer.disconnect();
   }, []);
 
   const mainLinks = ["Home", "About", "Services", "Contact"];
@@ -46,7 +46,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className={`hidden md:flex items-center space-x-10 font-poppins font-medium`}>
+        <nav className="hidden md:flex items-center space-x-10 font-poppins font-medium">
           {mainLinks.map((item) => (
             <Link
               key={item}
@@ -59,42 +59,38 @@ export default function Header() {
           ))}
 
           {/* Categories Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setCategoryOpen(true)}
-            onMouseLeave={() => setCategoryOpen(false)}
-          >
-            <Menu as="div" className="relative inline-block text-left">
-              <Menu.Button className={`inline-flex items-center gap-1 transition duration-300 ${textColor} hover:text-[var(--primary)]`}>
-                Categories
-                <ChevronDownIcon
-                  className={`w-5 h-5 transition-transform ${categoryOpen ? "rotate-180" : "rotate-0"}`}
-                />
-              </Menu.Button>
+          <Menu as="div" className="relative inline-block text-left">
+            <Menu.Button
+              className={`inline-flex items-center gap-1 transition duration-300 ${textColor} hover:text-[var(--primary)]`}
+              onMouseEnter={() => setCategoryOpen(true)}
+              onMouseLeave={() => setCategoryOpen(false)}
+            >
+              Categories
+              <ChevronDownIcon className={`w-5 h-5 transition-transform ${categoryOpen ? "rotate-180" : "rotate-0"}`} />
+            </Menu.Button>
 
-              <Menu.Items
-                static
-                className={`absolute right-0 mt-3 w-56 origin-top-right bg-[var(--secondary)]/95 backdrop-blur-xl rounded-lg shadow-xl ring-1 ring-black/10 transform transition-all duration-300 ease-out ${
-                  categoryOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
-                }`}
-              >
-                {categories.map((cat) => (
-                  <Menu.Item key={cat}>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={`block px-5 py-2 text-sm rounded-md transition-all ${
-                          active ? "bg-[var(--primary)] text-white scale-105" : "text-white"
-                        }`}
-                      >
-                        {cat}
-                      </a>
-                    )}
-                  </Menu.Item>
-                ))}
-              </Menu.Items>
-            </Menu>
-          </div>
+            <Menu.Items
+              static
+              className={`absolute right-0 mt-3 w-56 origin-top-right bg-[var(--secondary)]/95 backdrop-blur-xl rounded-lg shadow-xl ring-1 ring-black/10 transform transition-all duration-300 ease-out ${
+                categoryOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+              }`}
+            >
+              {categories.map((cat) => (
+                <Menu.Item key={cat}>
+                  {({ active }) => (
+                    <a
+                      href="#"
+                      className={`block px-5 py-2 text-sm rounded-md transition-all ${
+                        active ? "bg-[var(--primary)] text-white scale-105" : "text-white"
+                      }`}
+                    >
+                      {cat}
+                    </a>
+                  )}
+                </Menu.Item>
+              ))}
+            </Menu.Items>
+          </Menu>
         </nav>
 
         {/* Mobile Menu Button */}
