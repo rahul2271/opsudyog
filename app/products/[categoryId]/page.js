@@ -1,8 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
-export default function ProductsPage({ params }) {
-  const { categoryId } = params;
+export default function CategoryPage({ params }) {
+  // ✅ unwrap params with React.use()
+  const { categoryId } = use(params);
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -13,13 +15,29 @@ export default function ProductsPage({ params }) {
 
   return (
     <main className="p-6">
-      <h1 className="text-xl font-bold mb-4">Products in Category {categoryId}</h1>
-      <ul className="grid grid-cols-2 gap-6">
-        {products.map(prod => (
-          <li key={prod.id} className="border p-4 rounded">
-            <img src={prod.images[0]?.src} alt={prod.name} className="w-full h-40 object-cover mb-2" />
-            <h3 className="font-semibold">{prod.name}</h3>
+      <h1 className="text-2xl font-bold mb-6">Category: {categoryId}</h1>
+
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {products.map((prod) => (
+          <li
+            key={prod.id}
+            className="border p-4 rounded shadow hover:shadow-lg transition"
+          >
+            <img
+              src={prod.images[0]?.src || "/placeholder.png"}
+              alt={prod.name}
+              className="w-full h-40 object-cover mb-2 rounded"
+            />
+            <h3 className="font-semibold text-lg">{prod.name}</h3>
             <p dangerouslySetInnerHTML={{ __html: prod.price_html }} />
+
+            {/* WordPress product page (open same tab, no Next.js interference) */}
+            <a
+              href={prod.permalink}
+              className="mt-2 inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded font-semibold"
+            >
+              View Product
+            </a>
           </li>
         ))}
       </ul>
