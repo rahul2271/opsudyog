@@ -1,5 +1,5 @@
 import { use } from "react";
-import Layout from "../../../components/layout";
+import { Layout } from "lucide-react";
 import axios from "axios";
 
 export async function generateMetadata({ params }) {
