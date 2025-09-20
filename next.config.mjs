@@ -3,8 +3,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/products/:path*",
-        destination: "https://darkcyan-gnu-869252.hostingersite.com/products/:path*",
+        source: "/products/:slug*",
+        destination: "https://darkcyan-gnu-869252.hostingersite.com/products/:slug*",
       },
     ];
   },

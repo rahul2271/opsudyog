@@ -31,11 +31,11 @@ export default function CategoryPage({ params }) {
 
             {/* ✅ Open WordPress product page directly in SAME tab */}
             <a
-              href={prod.permalink} // WordPress product URL
-              className="mt-2 inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded font-semibold"
-            >
-              View Product
-            </a>
+  href={`/products/${prod.slug}`}  // ✅ use slug instead of id
+  className="mt-2 inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded font-semibold"
+>
+  View Product
+</a>
           </li>
         ))}
       </ul>
