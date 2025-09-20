@@ -1,27 +1,39 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function CategoriesPage() {
-  const [categories, setCategories] = useState([]);
+export default function CategoryPage({ params }) {
+  const { categoryId } = params;
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("/api/categories")
+    fetch(`/api/products?category=${categoryId}`)
       .then(res => res.json())
-      .then(data => setCategories(data));
-  }, []);
+      .then(data => setProducts(data));
+  }, [categoryId]);
 
   return (
     <main className="p-6">
-      <h1 className="text-xl font-bold mb-4">Product Categories</h1>
-      <ul className="space-y-4">
-        {categories.map(cat => (
-          <li key={cat.id}>
+      <h1 className="text-2xl font-bold mb-6">Category: {categoryId}</h1>
+
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {products.map(prod => (
+          <li
+            key={prod.id}
+            className="border p-4 rounded shadow hover:shadow-lg transition"
+          >
+            <img
+              src={prod.images[0]?.src || "/placeholder.png"}
+              alt={prod.name}
+              className="w-full h-40 object-cover mb-2 rounded"
+            />
+            <h3 className="font-semibold text-lg">{prod.name}</h3>
+            <p dangerouslySetInnerHTML={{ __html: prod.price_html }} />
+
             <a
-              href={`/products/${cat.id}`}
-              className="flex items-center space-x-2 text-blue-700 underline"
+              href={`/products/${prod.slug}`}
+              className="mt-2 inline-block bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded font-semibold"
             >
-              {cat.image && <img src={cat.image.src} alt={cat.name} width={40} />}
-              <span>{cat.name}</span>
+              View Product
             </a>
           </li>
         ))}
