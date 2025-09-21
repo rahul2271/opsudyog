@@ -31,7 +31,7 @@ async function getHomepage() {
 
 export default function HomePage() {
   return (
-    <main className="">
+    <main className="overflow-hidden">
       <Herosection/>
       <AboutSection/>
       <ProductsSection/>
