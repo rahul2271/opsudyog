@@ -32,7 +32,7 @@ export default function HeroSection() {
           fill
           priority
           sizes="(max-width: 768px) 100vw, 100vw"
-          quality={isMobile ? 50 : 80}
+          quality={isMobile ? 20 : 80}
           placeholder="blur"
           blurDataURL="/hero11-blur.jpg"
           className="object-cover object-center brightness-50"
