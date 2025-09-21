@@ -179,14 +179,14 @@ export default function IndustriesServed() {
       </motion.div>
 
       {/* Animated Background Gears */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <Image
           src="/subtle-gears.png"
           alt="decorative gears"
           fill
           className="opacity-10 object-cover animate-spin-slow"
         />
-      </div>
+      </div> */}
     </section>
   );
 }
