@@ -31,12 +31,12 @@ export default function Footer() {
           transition={{ duration: 0.8 }}
           className="flex items-center gap-4"
         >
-          <div className="relative w-14 h-14 md:w-20 md:h-20">
+          <div className="relative w-14 h-14 md:w-50 md:h-50">
             <Image
               src="/opslogo1.png"
               alt="OPS Udyog Logo"
               fill
-              className="object-contain animate-spin-slow"
+              className="object-contain animate-spin-slow filter brightness-60 dark:brightness-120"
             />
           </div>
           <div>

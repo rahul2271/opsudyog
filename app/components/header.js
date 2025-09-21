@@ -21,7 +21,7 @@ export default function Header() {
             alt="OPS Udyog"
             width={150}
             height={50}
-            className="transition-transform duration-700 hover:rotate-[-8deg] hover:scale-110"
+            className="transition-transform duration-700 hover:rotate-[-8deg] filter brightness-120 hover:scale-110"
           />
         </Link>
 
