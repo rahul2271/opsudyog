@@ -12,7 +12,7 @@ export default function ProductClient({ product }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <div className="container mx-auto pt-[150px] p-6 md:p-12 font-sans">
+    <div className="container mx-auto pt-[200px] p-6  font-sans">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
         {/* Product Image Gallery */}
         <div className="space-y-6">

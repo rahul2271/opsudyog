@@ -7,7 +7,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero-section"
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-[80px]"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-[80px] overflow-x-hidden"
     >
       {/* Header Merge Overlay */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-gray-900/95 to-transparent z-30 pointer-events-none"></div>
@@ -34,18 +34,18 @@ export default function HeroSection() {
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        className="absolute top-10 left-10 opacity-20 z-20"
+        className="absolute top-10 left-10 opacity-20 z-20 max-w-[calc(100%-20px)] max-h-[calc(100%-20px)]"
       >
         <Image src="/colorful-gears.png" alt="gear" width={100} height={100} loading="lazy" />
       </motion.div>
 
       {/* Content */}
-      <div className="text-center px-6 max-w-3xl relative z-40">
+      <div className="text-center px-6 md:px-4 max-w-6xl relative z-40 w-full">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-4xl md:text-7xl font-bold text-white drop-shadow-lg"
+          className="text-4xl md:text-7xl font-bold text-white drop-shadow-lg break-words"
         >
           Engineering Tomorrow’s Machinery, Today
         </motion.h1>
@@ -53,7 +53,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 1 }}
-          className="mt-4 text-lg md:text-xl text-gray-200"
+          className="mt-4 text-lg md:text-xl text-gray-200 break-words"
         >
           Precision, durability, and innovation for modern industries.
         </motion.p>
