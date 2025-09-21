@@ -14,7 +14,7 @@ import Contact from "../components/contact";
 export default function AboutHero() {
   return (
     <>
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative pt-[150px] w-full min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
       <motion.div
         initial={{ scale: 1.05 }}
@@ -23,13 +23,13 @@ export default function AboutHero() {
         className="absolute inset-0 -z-10"
       >
         <Image
-          src="/img2.avif" // Machinery bg
+          src="/about.jpg" // Machinery bg
           alt="OPS Udyog Machinery"
           fill
           priority
           sizes="100vw"
           quality={70}
-          className="object-cover object-center brightness-25"
+          className="object-cover object-center brightness-50"
         />
       </motion.div>
 
