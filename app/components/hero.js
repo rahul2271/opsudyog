@@ -27,7 +27,7 @@ export default function HeroSection() {
         className="absolute inset-0 -z-10 w-full h-full"
       >
         <Image
-          src={isMobile ? "/hero11-mobile.jpg" : "/hero11.jpg"}
+          src={isMobile ? "/hero11.jpg" : "/hero11.jpg"}
           alt="OPS Udyog Machinery"
           fill
           priority
