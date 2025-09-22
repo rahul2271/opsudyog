@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,53 +8,33 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-gray-900 text-gray-200 pt-16 pb-12 overflow-hidden">
-      {/* Floating magical orbs */}
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ repeat: Infinity, duration: 120, ease: "linear" }}
-        className="absolute w-72 h-72 rounded-full bg-gradient-to-tr from-purple-500/30 to-pink-400/30 opacity-20 blur-3xl top-10 left-10"
-      />
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ repeat: Infinity, duration: 180, ease: "linear" }}
-        className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-indigo-400/20 to-blue-500/20 opacity-20 blur-3xl bottom-0 right-10"
-      />
+      {/* Decorative Background Orbs */}
+      <div className="absolute w-72 h-72 rounded-full bg-gradient-to-tr from-purple-500/30 to-pink-400/30 opacity-20 blur-3xl top-10 left-10 pointer-events-none" />
+      <div className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-indigo-400/20 to-blue-500/20 opacity-20 blur-3xl bottom-0 right-10 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Logo + Tagline */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col items-start gap-4"
-        >
+        <div className="flex flex-col items-start gap-4">
           <div className="relative w-20 h-20 md:w-[150px] md:h-[150px]">
             <Image
               src="/opslogo1.png"
               alt="OPS Udyog Logo"
               fill
-              className="object-contain animate-spin-slow  filter brightness-80 dark:brightness-120"
+              className="object-contain filter brightness-80 dark:brightness-120"
             />
           </div>
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-orange-500">
-              OPS Udyog
-            </h2>
+            <h2 className="text-xl md:text-2xl font-bold text-orange-500">OPS Udyog</h2>
             <p className="text-sm md:text-base text-gray-400 leading-relaxed mt-1">
               Engineering Tomorrow’s Machinery, Today.
               <br />
               <span className="text-orange-500 font-medium">Precision • Innovation • Reliability</span>
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Quick Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-col"
-        >
+        <div className="flex flex-col">
           <h3 className="text-lg font-semibold text-orange-500 mb-4">Quick Links</h3>
           <ul className="space-y-2">
             {quickLinks.map((link) => (
@@ -70,15 +49,10 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
 
         {/* Resources */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col"
-        >
+        <div className="flex flex-col">
           <h3 className="text-lg font-semibold text-orange-500 mb-4">Resources</h3>
           <ul className="space-y-2">
             {resources.map((link) => (
@@ -93,15 +67,10 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
 
         {/* Newsletter */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col"
-        >
+        <div className="flex flex-col">
           <h3 className="text-lg font-semibold text-orange-500 mb-4">Stay Updated</h3>
           <p className="text-sm text-gray-400 mb-4">
             Subscribe for latest industry insights & updates.
@@ -119,17 +88,14 @@ export default function Footer() {
               Join
             </button>
           </form>
-        </motion.div>
+        </div>
       </div>
 
       {/* Divider & Credits */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.8 }}
-        className="border-t border-gray-700 mt-12 pt-6 text-center text-gray-500 text-sm"
-      >
-        © {new Date().getFullYear()} OPS Udyog.<br></br> Developed with ⚙️ by{" "}
+      <div className="border-t border-gray-700 mt-12 pt-6 text-center text-gray-500 text-sm">
+        © {new Date().getFullYear()} OPS Udyog.
+        <br />
+        Developed with ⚙️ by{" "}
         <a
           href="https://www.rctechsolutions.com"
           target="_blank"
@@ -138,7 +104,7 @@ export default function Footer() {
         >
           RC Tech Solutions
         </a>
-      </motion.div>
+      </div>
     </footer>
   );
 }

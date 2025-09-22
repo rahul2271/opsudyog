@@ -88,10 +88,10 @@ export default function ServicesPage() {
       {/* SERVICES */}
       <section id="services" className="max-w-7xl mx-auto px-6 py-20 sm:py-24">
         {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-3 gap-10">
+        <div className=" grid md:grid-cols-3 gap-10">
           {services.map((service, idx) => (
             <div key={idx} className="relative bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg transition hover:shadow-xl overflow-hidden">
-              <div className="absolute -top-3 -right-3 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+              <div className="absolute -top-1 -right-2 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
                 {service.badge}
               </div>
               <div className="flex items-center gap-4">
@@ -113,7 +113,7 @@ export default function ServicesPage() {
         </div>
 
         {/* Mobile Swiper */}
-        <div className="block md:hidden mt-8">
+        <div className="block hidden mt-8">
           <Swiper
             spaceBetween={20}
             slidesPerView={1}
@@ -151,7 +151,7 @@ export default function ServicesPage() {
 
       {/* CTA */}
       <section id="contact" className="max-w-7xl mx-auto px-6 py-16 sm:py-20 text-center">
-        <div className="rounded-2xl p-10 bg-gradient-to-br from-orange-200/30 via-red-300/20 to-orange-400/20 opacity-50 text-white shadow-2xl transition-transform">
+        <div className="rounded-2xl p-10 bg-gradient-to-br from-orange-200/30 via-red-300/20 to-orange-400/20 text-white shadow-2xl transition-transform">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Build the Future?</h2>
           <p className="mb-8 text-sm md:text-lg">Connect with our engineers today and get your industrial solutions deployed with confidence.</p>
           <div className="mt-6 flex justify-center">
