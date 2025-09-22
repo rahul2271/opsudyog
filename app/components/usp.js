@@ -1,21 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { FaShieldAlt, FaLightbulb, FaCheckCircle } from "react-icons/fa";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  Area,
-} from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Area } from "recharts";
 
 export default function WhyChooseSection() {
   const [isDark, setIsDark] = useState(false);
@@ -45,7 +32,6 @@ export default function WhyChooseSection() {
     { name: "Heavy Equipment Industry", value: 5 },
   ];
 
-  // Define gradients for pie slices
   const PIE_GRADIENTS = [
     ["#FF6B00", "#FF9F1C"],
     ["#FFD166", "#FCA311"],
@@ -111,40 +97,26 @@ export default function WhyChooseSection() {
     <section className="relative py-16 px-4 md:px-12 bg-background transition-colors duration-500 overflow-hidden">
       {/* Header */}
       <div className="max-w-6xl mx-auto text-center mb-12 md:mb-16 relative z-10">
-        <motion.h2
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold mb-3 tracking-wide text-foreground"
-        >
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold mb-3 tracking-wide text-foreground">
           Why Choose <span className="text-primary">OPS Udyog</span>
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-sm sm:text-base md:text-lg max-w-3xl mx-auto text-accent"
-        >
+        </h2>
+        <p className="text-sm sm:text-base md:text-lg max-w-3xl mx-auto text-accent">
           Established in 1950, OPS Udyog has been a global leader in precision machinery, serving
           multiple industries with innovation, durability, and unmatched reliability.
-        </motion.p>
+        </p>
       </div>
 
       {/* USP Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 mb-12 md:mb-20 relative z-10">
         {uspData.map((usp, idx) => (
-          <motion.div
+          <div
             key={idx}
-            whileHover={{ scale: 1.05, boxShadow: "0 0 15px var(--primary)" }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: idx * 0.15 }}
-            className="backdrop-blur-lg border border-accent/20 p-6 sm:p-8 md:p-10 rounded-2xl shadow-lg flex flex-col items-center text-center bg-white/30 dark:bg-gray-800/70 transition-all duration-500"
+            className="backdrop-blur-lg border border-accent/20 p-6 sm:p-8 md:p-10 rounded-2xl shadow-lg flex flex-col items-center text-center bg-white/30 dark:bg-gray-800/70 transition-all duration-500 hover:scale-105"
           >
             <div className="text-primary text-5xl sm:text-6xl mb-4">{usp.icon}</div>
             <h3 className="text-xl sm:text-2xl font-bold mb-1 text-foreground">{usp.title}</h3>
             <p className="text-sm sm:text-lg font-semibold text-accent">{usp.stat}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -219,12 +191,7 @@ export default function WhyChooseSection() {
                 }}
                 formatter={(value, name, props) => [`${value}% Growth`, `Year: ${props.payload.year}`]}
               />
-              <Area
-                type="monotone"
-                dataKey="growth"
-                stroke="none"
-                fill="url(#areaGradient)"
-              />
+              <Area type="monotone" dataKey="growth" stroke="none" fill="url(#areaGradient)" />
               <Line
                 type="monotone"
                 dataKey="growth"
@@ -245,21 +212,15 @@ export default function WhyChooseSection() {
       {/* Counters */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 text-center relative z-10">
         {Object.entries(counters).map(([key, value], idx) => (
-          <motion.div
+          <div
             key={idx}
-            whileHover={{ scale: 1.03, boxShadow: "0 0 15px var(--primary)" }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: idx * 0.15 }}
-            className="backdrop-blur-lg border border-accent/20 p-6 sm:p-8 md:p-10 rounded-2xl shadow-lg flex flex-col items-center bg-white/30 dark:bg-gray-800/70 transition-all duration-500"
+            className="backdrop-blur-lg border border-accent/20 p-6 sm:p-8 md:p-10 rounded-2xl shadow-lg flex flex-col items-center bg-white/30 dark:bg-gray-800/70 transition-all duration-500 hover:scale-105"
           >
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground">
-              {value}+
-            </h3>
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground">{value}+</h3>
             <p className="text-sm sm:text-lg font-medium text-accent mt-1">
               {key.charAt(0).toUpperCase() + key.slice(1)}
             </p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>
