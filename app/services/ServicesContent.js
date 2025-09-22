@@ -16,9 +16,27 @@ const cardMotion = { hidden: { opacity: 0, y: 30, scale: 0.95 }, visible: { opac
 
 // Services Data
 const services = [
-  { title: "Installation", desc: "Precision commissioning & operator onboarding with safety-first protocols.", icon: "M3 12h18", badge: "Top Rated", btn: "Get Installed" },
-  { title: "Maintenance & Support", desc: "Preventive schedules, telemetry, and 24/7 service to ensure uptime.", icon: "M12 6v6l4 2", badge: "24/7 Support", btn: "Service Plans" },
-  { title: "Custom Machine Designing", desc: "Tailored CAD designs to scaled production for your industrial needs.", icon: "M4 7h16M4 12h10M4 17h16", badge: "Expert Design", btn: "Start Project" },
+  {
+    title: "Precision Installation",
+    desc: "Expert commissioning, operator training, and adherence to safety-first protocols for seamless deployment.",
+    icon: "M3 12h18",
+    badge: "Top Rated",
+    btn: "Get Installed",
+  },
+  {
+    title: "Maintenance & Support",
+    desc: "24/7 monitoring, preventive maintenance, and instant troubleshooting to maximize uptime and efficiency.",
+    icon: "M12 6v6l4 2",
+    badge: "24/7 Support",
+    btn: "View Plans",
+  },
+  {
+    title: "Custom Machine Design",
+    desc: "Tailored CAD designs and scalable solutions to meet your unique industrial production needs.",
+    icon: "M4 7h16M4 12h10M4 17h16",
+    badge: "Expert Design",
+    btn: "Start Project",
+  },
 ];
 
 export default function ServicesPage() {
@@ -31,7 +49,7 @@ export default function ServicesPage() {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 0.15, scale: 1.3 }}
-          transition={{ duration: 10, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+          transition={{ duration: 12, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
           className="absolute inset-0 bg-[radial-gradient(circle_at_center,#f97316_0%,transparent_85%)] blur-3xl"
         />
 
@@ -48,49 +66,64 @@ export default function ServicesPage() {
               </span>
             </h1>
             <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-xl">
-              Precision engineering, seamless installation, and mission-critical support — all wrapped in innovation and reliability.
+              Empowering industries with precision engineering, seamless installations, and mission-critical support—redefining operational excellence.
             </p>
-            <div className="flex gap-5">
-            <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          className="mt-6 flex justify-center"
-        >
-          <Link
-            href="/products"
-            className="relative px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-primary text-white font-semibold text-base sm:text-lg overflow-hidden group"
-          >
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-            Products
-          </Link>
-        </motion.div>
-
-  {/* Learn More Button */}
-  <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          className="mt-6 flex justify-center"
-        >
-          <Link
-            href="/products"
-            className="relative px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-primary text-white font-semibold text-base sm:text-lg overflow-hidden group"
-          >
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-            Contact
-          </Link>
-        </motion.div>
-        </div>
+            <div className="mt-6 flex flex-wrap gap-4">
+              <Link
+                href="/products"
+                className="relative px-6 sm:px-8 py-3 rounded-full bg-primary text-white font-semibold text-base sm:text-lg overflow-hidden group shadow-lg hover:scale-105 transition-transform duration-700"
+              >
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                Explore Products
+              </Link>
+              <Link
+                href="#contact"
+                className="relative px-6 sm:px-8 py-3 rounded-full border-2 border-orange-600 text-orange-600 dark:text-orange-300 font-semibold text-base sm:text-lg overflow-hidden group hover:bg-orange-600 hover:text-white transition duration-500"
+              >
+                Contact Us
+              </Link>
+            </div>
           </motion.div>
 
-          {/* Right: Hero Image */}
-          <motion.div initial={{ scale: 0.95, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 80, damping: 14 }} className="hidden md:block lg:col-span-5 relative">
-            <div className="relative  overflow-hidden ">
-              <motion.div whileHover={{ scale: 0.9, rotateX: 2, rotateY: -2 }} transition={{ type: "spring", stiffness: 120, damping: 10 }}>
-                <Image src="/opslogo1.png" alt="OPS Udyog Machinery" width={500} height={500} className="object-cover w-full h-auto transition-transform duration-700 ease-out" priority />
-              </motion.div>
-            </div>
+          {/* Right: Hero Image with Floating Industrial Elements */}
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 80, damping: 14 }}
+            className="hidden md:block lg:col-span-5 relative"
+          >
+            {/* Main Hero Image */}
+            <motion.div
+              whileHover={{ scale: 0.97, rotateX: 2, rotateY: -2 }}
+              transition={{ type: "spring", stiffness: 120, damping: 10 }}
+              className="relative overflow-hidden rounded-3xl shadow-2xl"
+            >
+              <Image
+                src="/opslogo1.png"
+                alt="OPS Udyog Machinery"
+                width={500}
+                height={500}
+                className="object-cover w-full h-auto"
+                priority
+              />
+            </motion.div>
+
+            {/* Floating Industrial Elements */}
+            <motion.div
+              animate={{ y: [0, -10, 0], rotate: [0, 15, -15, 0] }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-10 left-8 w-16 h-16 bg-[url('/gear.svg')] bg-contain bg-no-repeat opacity-40 pointer-events-none"
+            />
+            <motion.div
+              animate={{ y: [5, -5, 5], rotate: [0, -10, 10, 0] }}
+              transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-12 right-6 w-20 h-20 bg-[url('/cog.svg')] bg-contain bg-no-repeat opacity-30 pointer-events-none"
+            />
+            <motion.div
+              animate={{ y: [-5, 5, -5], rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/2 left-1/3 w-12 h-12 bg-[url('/blueprint.svg')] bg-contain bg-no-repeat opacity-25 pointer-events-none"
+            />
           </motion.div>
         </div>
       </section>
