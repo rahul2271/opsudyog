@@ -10,9 +10,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // Motion Variants
-const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 70, damping: 12 } } };
-const staggerContainer = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } };
-const cardMotion = { hidden: { opacity: 0, y: 30, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 80, damping: 14 } } };
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 70, damping: 12 } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+};
+
+const cardMotion = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 80, damping: 14 } },
+};
 
 // Services Data
 const services = [
@@ -44,8 +55,8 @@ export default function ServicesPage() {
     <main className="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white transition-colors duration-500 overflow-x-hidden relative pt-[120px]">
 
       {/* HERO */}
-      <section className="relative max-w-7xl mx-auto px-6 py-32 overflow-hidden">
-        {/* Animated radial background */}
+      <section className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 overflow-hidden">
+        {/* Radial Background */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 0.15, scale: 1.3 }}
@@ -85,12 +96,12 @@ export default function ServicesPage() {
             </div>
           </motion.div>
 
-          {/* Right: Hero Image with Floating Industrial Elements */}
+          {/* Right: Hero Image + Floating Elements */}
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 80, damping: 14 }}
-            className="hidden md:block lg:col-span-5 relative"
+            className="relative lg:col-span-5"
           >
             {/* Main Hero Image */}
             <motion.div
@@ -108,54 +119,50 @@ export default function ServicesPage() {
               />
             </motion.div>
 
-            {/* Floating Industrial Elements */}
+            {/* Floating Elements for md+ only */}
             <motion.div
+              className="hidden md:block absolute top-10 left-8 w-16 h-16 bg-[url('/gear.svg')] bg-contain bg-no-repeat opacity-40 pointer-events-none"
               animate={{ y: [0, -10, 0], rotate: [0, 15, -15, 0] }}
               transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-10 left-8 w-16 h-16 bg-[url('/gear.svg')] bg-contain bg-no-repeat opacity-40 pointer-events-none"
             />
             <motion.div
+              className="hidden md:block absolute bottom-12 right-6 w-20 h-20 bg-[url('/cog.svg')] bg-contain bg-no-repeat opacity-30 pointer-events-none"
               animate={{ y: [5, -5, 5], rotate: [0, -10, 10, 0] }}
               transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-12 right-6 w-20 h-20 bg-[url('/cog.svg')] bg-contain bg-no-repeat opacity-30 pointer-events-none"
             />
             <motion.div
+              className="hidden md:block absolute top-1/2 left-1/3 w-12 h-12 bg-[url('/blueprint.svg')] bg-contain bg-no-repeat opacity-25 pointer-events-none"
               animate={{ y: [-5, 5, -5], rotate: [0, 5, -5, 0] }}
               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-1/2 left-1/3 w-12 h-12 bg-[url('/blueprint.svg')] bg-contain bg-no-repeat opacity-25 pointer-events-none"
             />
           </motion.div>
         </div>
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="max-w-7xl mx-auto px-6 py-24">
-        <motion.div initial="hidden" whileInView="visible" variants={staggerContainer} viewport={{ once: true, amount: 0.3 }} className="grid md:grid-cols-3 gap-10">
+      <section id="services" className="max-w-7xl mx-auto px-6 py-20 sm:py-24">
+        {/* Desktop Grid */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={staggerContainer}
+          viewport={{ once: true, amount: 0.3 }}
+          className="hidden md:grid md:grid-cols-3 gap-10"
+        >
           {services.map((service, idx) => (
             <motion.div
               key={idx}
               variants={cardMotion}
-              whileHover={{ scale: 1.07, rotateX: 3, rotateY: -3 }}
-              className="relative bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl  hover:shadow-[0_25px_50px_rgba(249,115,22,0.35)] transition overflow-hidden group"
+              whileHover={{ scale: 1.05 }}
+              className="relative bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden group"
             >
-              {/* Animated Gradient Overlay */}
-              <motion.div
-                animate={{ rotate: [0, 45, 0] }}
-                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 bg-gradient-to-br from-orange-200/30  via-red-300/20 to-orange-400/20 opacity-50  blur-xl pointer-events-none"
-              />
-
-              {/* Floating Badge */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-3 bg-orange-500 text-white pt-6 px-4 py-1 rounded-full text-sm font-semibold shadow-lg"
-              >
+              {/* Badge */}
+              <div className="absolute -top-3 -right-3 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
                 {service.badge}
-              </motion.div>
+              </div>
 
-              <div className="relative z-10 flex items-center gap-4">
-                <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-700 text-orange-600 dark:text-orange-300 text-2xl font-bold transition-transform group-hover:scale-110">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 flex items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-700 text-orange-600 dark:text-orange-300 text-2xl font-bold">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                     <path d={service.icon} />
                   </svg>
@@ -165,7 +172,6 @@ export default function ServicesPage() {
                   <p className="mt-2 text-gray-600 dark:text-gray-300 text-sm">{service.desc}</p>
                 </div>
               </div>
-
               <Link href="#contact" className="mt-4 inline-block px-4 py-2 bg-orange-600 dark:bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-500 dark:hover:bg-orange-400 transition">
                 {service.btn}
               </Link>
@@ -174,15 +180,22 @@ export default function ServicesPage() {
         </motion.div>
 
         {/* Mobile Swiper */}
-        <div className="mt-12 hidden">
-          <Swiper spaceBetween={20} slidesPerView={1} pagination={{ clickable: true }} loop autoplay={{ delay: 4000 }} modules={[Pagination, Autoplay]}>
+        <div className="block md:hidden mt-8">
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            loop
+            autoplay={{ delay: 4000 }}
+            modules={[Pagination, Autoplay]}
+          >
             {services.map((service, idx) => (
               <SwiperSlide key={idx}>
-                <motion.div variants={cardMotion} whileHover={{ scale: 1.05 }} className="relative bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden">
-                  <motion.div animate={{ y: [0, -6, 0] }} transition={{ duration: 3, repeat: Infinity }} className="absolute -top-1 -right-1 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                <motion.div variants={cardMotion} whileHover={{ scale: 1.03 }} className="relative bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md transition overflow-hidden">
+                  <div className="absolute -top-1 -right-1 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
                     {service.badge}
-                  </motion.div>
-                  <div className="flex items-center gap-4 relative z-10">
+                  </div>
+                  <div className="flex items-center gap-4">
                     <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-700 text-orange-600 dark:text-orange-300 text-xl font-bold">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
                         <path d={service.icon} />
@@ -204,28 +217,31 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section id="contact" className="max-w-7xl mx-auto px-6 py-20 text-center">
-        <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ type: "spring", stiffness: 80, damping: 14 }} className="rounded-2xl p-10 bg-gradient-to-br from-orange-200/30  via-red-300/20 to-orange-400/20 opacity-50 text-white shadow-2xl hover:shadow-[0_20px_50px_rgba(249,115,22,0.4)] transition-transform">
+      <section id="contact" className="max-w-7xl mx-auto px-6 py-16 sm:py-20 text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ type: "spring", stiffness: 80, damping: 14 }}
+          className="rounded-2xl p-10 bg-gradient-to-br from-orange-200/30 via-red-300/20 to-orange-400/20 opacity-50 text-white shadow-2xl hover:shadow-[0_20px_50px_rgba(249,115,22,0.4)] transition-transform"
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Build the Future?</h2>
           <p className="mb-8 text-sm md:text-lg">Connect with our engineers today and get your industrial solutions deployed with confidence.</p>
-           <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          className="mt-6 flex justify-center"
-        >
-          <Link
-            href="/products"
-            className="relative px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-primary text-white font-semibold text-base sm:text-lg overflow-hidden group"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 1 }}
+            className="mt-6 flex justify-center"
           >
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-            Explore Products
-          </Link>
-        </motion.div>
+            <Link
+              href="/products"
+              className="relative px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-primary text-white font-semibold text-base sm:text-lg overflow-hidden group"
+            >
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+              Explore Products
+            </Link>
+          </motion.div>
         </motion.div>
       </section>
-
-      
     </main>
   );
 }
