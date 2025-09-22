@@ -1,13 +1,22 @@
+// ./app/category/[slug]/page.js
+// ✅ Server Component — no "use client"
+
 import Link from "next/link";
 import { fetchCategories, fetchProductsByCategory } from "../../../lib/wp";
 
-// ✅ Static params for all categories
+// Helper to strip HTML tags from WordPress content
+function stripHtml(html) {
+  if (!html) return "";
+  return html.replace(/<[^>]*>/g, "");
+}
+
+// Static params
 export async function generateStaticParams() {
   const categories = await fetchCategories();
   return categories.map((cat) => ({ slug: cat.slug }));
 }
 
-// ✅ Dynamic SEO Metadata per category (JavaScript only, no TS types)
+// Dynamic metadata
 export async function generateMetadata({ params }) {
   const categories = await fetchCategories();
   const category = categories.find((c) => c.slug === params.slug);
@@ -21,12 +30,10 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${category.name} | OPS Udyog`,
-    description:
-      category.description || `Explore premium products in ${category.name} at OPS Udyog.`,
+    description: category.description || `Explore premium products in ${category.name} at OPS Udyog.`,
     openGraph: {
       title: `${category.name} | OPS Udyog`,
-      description:
-        category.description || `Explore premium products in ${category.name} at OPS Udyog.`,
+      description: category.description || `Explore premium products in ${category.name} at OPS Udyog.`,
       url: `https://www.opsudyog.com/category/${category.slug}`,
       type: "website",
       images: category.image?.src ? [{ url: category.image.src }] : [],
@@ -39,87 +46,53 @@ export default async function CategoryPage({ params }) {
   const categories = await fetchCategories();
   const category = categories.find((c) => c.slug === slug);
 
-  if (!category) return <div>Category not found</div>;
+  if (!category) return <div className="text-center py-32">Category not found</div>;
 
   const products = await fetchProductsByCategory(category.id);
 
-  // ✅ Breadcrumb Schema
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://www.opsudyog.com",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: category.name,
-        item: `https://www.opsudyog.com/category/${category.slug}`,
-      },
-    ],
-  };
-
-  // ✅ Product Schema for SEO Rich Snippets
-  const productSchema = products.map((prod) => ({
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: prod.name,
-    image: prod.images?.[0]?.src,
-    description: prod.description || `${prod.name} available at OPS Udyog.`,
-    sku: prod.sku || prod.id,
-    brand: {
-      "@type": "Brand",
-      name: "OPS Udyog",
-    },
-    offers: {
-      "@type": "Offer",
-      url: `https://www.opsudyog.com/product/${prod.slug}`,
-      priceCurrency: "USD",
-      price: prod.price,
-      availability: "https://schema.org/InStock",
-    },
-  }));
-
   return (
-    <div className="container mx-auto px-6 py-10 pt-[180px]">
-      {/* ✅ Inject Schema Markup */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify([breadcrumbSchema, ...productSchema]),
-        }}
-      />
-
-      {/* Page Title */}
-      <h1 className="text-4xl font-extrabold mb-8 text-slate-900 dark:text-white">
+    <div className="container mx-auto px-6 py-16">
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-12 text-center text-primary">
         {category.name}
       </h1>
 
-      {/* Products Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {products.map((prod) => (
-          <Link key={prod.id} href={`/product/${prod.slug}`}>
-            <div className="group relative bg-white dark:bg-slate-900 p-6 
-                rounded-xl border border-gray-200 dark:border-gray-700 
-                shadow hover:shadow-xl transition transform hover:-translate-y-1">
-              {prod.images?.[0]?.src && (
+          <div
+            key={prod.id}
+            className="group relative rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-md hover:shadow-xl transition-transform duration-500 transform hover:-translate-y-1"
+          >
+            {/* Image */}
+            {prod.images?.[0]?.src && (
+              <div className="relative h-64 w-full overflow-hidden">
                 <img
                   src={prod.images[0].src}
                   alt={prod.name}
-                  className="mb-4 w-full h-48 object-cover rounded-lg 
-                    group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover transition-transform duration-500 transform group-hover:scale-105"
                 />
-              )}
-              <h2 className="text-lg font-semibold text-slate-800 dark:text-white group-hover:text-orange-500">
-                {prod.name}
-              </h2>
-              <p className="text-orange-600 font-bold mt-2">${prod.price}</p>
-            </div>
-          </Link>
+              </div>
+            )}
+
+            {/* Content */}
+            <div className="p-6 flex flex-col h-full">
+  <h2 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-orange-600 transition-colors duration-300">
+    {prod.name}
+  </h2>
+
+  {prod.description && (
+    <p className="mt-2 text-sm md:text-base text-slate-600 dark:text-gray-300">
+      {stripHtml(prod.description).slice(0, 120)}...
+    </p>
+  )}
+
+  <Link
+    href={`/quote?product=${prod.slug}`}
+    className="mt-4 inline-block px-6 py-3 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold shadow text-center transition"
+  >
+    Request a Quote
+  </Link>
+</div>
+          </div>
         ))}
       </div>
     </div>

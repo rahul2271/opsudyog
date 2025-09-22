@@ -12,13 +12,23 @@ export default function Header() {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
+    { name: "Request Quote", href: "/quote" },
   ];
 
   const categories = [
-    { name: "Machinery", href: "/products#machinery" },
-    { name: "Spare Parts", href: "/products#spare-parts" },
-    { name: "Services", href: "/services" },
+    { name: "Heavy Duty Lathe Machine", href: "/category/heavy-duty-lathe-machine" },
+    { name: "Lathe Machine", href: "/category/heavy-duty-lathe-machine" },
+    { name: "Shaper Machine", href: "/category/heavy-duty-lathe-machine" },
+    { name: "Hydraulic Shop Press", href: "/category/heavy-duty-lathe-machine" },
+
+    { name: "Slotting Machine", href: "/category/heavy-duty-lathe-machine" },
+    { name: "Radial Drilling Machine", href: "/category/heavy-duty-lathe-machine" },
+    { name: "Milling Machine ", href: "/category/heavy-duty-lathe-machine" },
+    { name: "Surface Grinding Machine", href: "/category/heavy-duty-lathe-machine" },
+    { name: "Sheet Metal Machinery", href: "/category/heavy-duty-lathe-machine" },
+    { name: "AutoMobile Workshops Machines", href: "/category/heavy-duty-lathe-machine" },
+    
+
   ];
 
   return (
