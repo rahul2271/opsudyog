@@ -57,7 +57,7 @@ export default async function CategoryPage({ params }) {
 
   return (
     <div className="container mx-auto px-6 py-16">
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-12 text-center text-primary">
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-12 text-center mt-[200px] text-primary">
         {category.name}
       </h1>
 
