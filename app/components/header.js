@@ -18,7 +18,7 @@ export default function Header() {
   const categories = [
     { name: "Heavy Duty Lathe Machine", href: "/category/heavy-duty-lathe-machine" },
     { name: "Lathe Machine", href: "/category/heavy-duty-lathe-machine" },
-    { name: "Shaper Machine", href: "/category/heavy-duty-lathe-machine" },
+    { name: "Shaper Machine", href: "/category/shaper-machine" },
     { name: "Hydraulic Shop Press", href: "/category/heavy-duty-lathe-machine" },
 
     { name: "Slotting Machine", href: "/category/heavy-duty-lathe-machine" },
