@@ -4,7 +4,7 @@ import Herosection from "./components/hero";
 import ProductsSection from "./components/productSection";
 import IndustriesServed from "./components/industriesServed";
 import Services from "./components/services";
-import Partners from "./components/clients";
+// import Partners from "./components/clients";
 import Contact from "./components/contact";
 // import QuoteSection from "./components/quote";
 import WhyChooseSection from "./components/usp";
@@ -37,7 +37,7 @@ export default function HomePage() {
       <ProductsSection/>
       <IndustriesServed/>
       <Services/>
-      <Partners/>
+      {/* <Partners/> */}
       <Contact/>
       {/* <QuoteSection/> */}
       <WhyChooseSection/>
