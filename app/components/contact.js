@@ -40,14 +40,16 @@ export default function Contact() {
               <FaMapMarkerAlt className="text-[var(--primary)]" /> Lathe Machine & Machinery Manufacturers, G.T.Road, Near Amritsar Industries, Batala, Punjab 143505
             </p>
             <p className="flex items-center gap-3">
-              <FaPhoneAlt className="text-[var(--primary)]" /> +91 98765 43210
+              <FaPhoneAlt className="text-[var(--primary)]" /> +91-98142-52066
+              <FaPhoneAlt className="text-[var(--primary)]" /> +91-98554-24658
+
             </p>
             <p className="flex items-center gap-3">
-              <FaEnvelope className="text-[var(--primary)]" /> contact@yuktiherbs.com
+              <FaEnvelope className="text-[var(--primary)]" />  opsudyog@gmail.com
             </p>
           </div>
           <a
-            href="https://wa.me/919876543210"
+            href="https://wa.me/919814252066"
             target="_blank"
             className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-white bg-[var(--primary)] shadow-lg overflow-hidden relative group transition"
           >
